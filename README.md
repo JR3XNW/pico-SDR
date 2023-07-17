@@ -180,3 +180,11 @@ A delay is introduced to maintain the desired sample rate. The delay duration is
 The loop continues, and the process repeats.
 
 Overall, the program reads the I and Q signals, applies the selected demodulation mode, filters the signal using the corresponding filter coefficients, applies AGC, and outputs the resulting audio signal to the speaker. The demodulation mode can be changed by pressing a push switch.
+
+## pico40M_monoband_radio
+**pico40M_monoband_radio.ino**
+
+This sketch is a summary of the functionality we have been experimenting with.
+Using two cores of pico, we have band scope, waterfall and VFO on core 0 and receive functionality on core 1. In the future, we plan to add a transmit function to core 1.
+Right now I am testing reception by connecting it to a direct line mixer that I have built in the past. There are still some problems: the rotary encoder that controls the VFO has jumps in rotation (the VFO lags behind the encoder operation) problems with reception sound, AGC, etc. I will continue to test and try to make it stable.
+The variable range of the VFO is from 7.0MHz to 7.2MHz, and the variable amount is switched between 1kz, 500Hz, and 100Hz with a push switch on the rotary encoder.
