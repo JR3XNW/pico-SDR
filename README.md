@@ -188,3 +188,19 @@ This sketch is a summary of the functionality we have been experimenting with.
 Using two cores of pico, we have band scope, waterfall and VFO on core 0 and receive functionality on core 1. In the future, we plan to add a transmit function to core 1.
 Right now I am testing reception by connecting it to a direct line mixer that I have built in the past. There are still some problems: the rotary encoder that controls the VFO has jumps in rotation (the VFO lags behind the encoder operation) problems with reception sound, AGC, etc. I will continue to test and try to make it stable.
 The variable range of the VFO is from 7.0MHz to 7.2MHz, and the variable amount is switched between 1kz, 500Hz, and 100Hz with a push switch on the rotary encoder.
+
+## pico40M_monoband_uSDX
+**pico40M_monoband_uSDX**
+
+This folder contains a sketch to turn a uSDX Atmega328 into a Raspberry Pico, the sketch changes, and a wiring diagram.
+The sketch modification is to change the frequency on line 57 to 64800000000ULL since the Si5351's reference frequency is 27MHz. This is an even multiple of the reference frequency (in this case 24 times) in the range of 600 MHz to 900 MHz in order to perform phase control.
+Line 143 is the crystal frequency of the Si5351, which is 27000000 Hz.
+If the frequency is higher than 7.1MHz, for example 7.101000, multiply the difference 1000 by 4 and add 4000 to 27000000.
+27000000+1000x4=27004000.
+If the outgoing frequency is lower, subtract it from 27000000. For example, if the outgoing frequency of VFO is 7.099 MHz,
+27000000-1000x4=26996000. The frequency of the kanazuzu will not match the frequency once, but it can be matched after repeating a few times.
+In the future, I would like to make it possible to match frequencies like uSDX.
+One more thing: Currently, the variable amount of VFO (default setting 1KHz) cannot be changed. This is due to the different method of reading the push switch status from uSDX. I will improve it in the future too.
+I will disclose the current status though it is still incomplete.
+
+Next is the program for the transmitting part, I want to use the same method as uSDX.
