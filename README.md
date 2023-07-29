@@ -204,3 +204,13 @@ One more thing: Currently, the variable amount of VFO (default setting 1KHz) can
 I will disclose the current status though it is still incomplete.
 
 Next is the program for the transmitting part, I want to use the same method as uSDX.
+
+**Circuit Changes in uSDX**
+
+This is a change to replace the Raspberry Pi Pico with an Atmega328.
+ I have included the schematic in the pico40M_monoband_uSDX folder, but have changed capacitors C17, C18, C22, and C23.
+I experimented with 10n and 100n. 10n has a wider band scope range but a little worse selectivity on reception. 100n has a narrower band scope range but better selectivity.
+Another change is to change resistors R10, R11, R12, and R13 to 51k. This change is due to the difference in input impedance between the Atmega328 and the Raspberry Pico.
+Finally, we need to connect pins 4 and 27 of the Atmega328; pins 5 and 28 need to be connected.
+I are still testing and will include a sketch upgrade in the future.
+
