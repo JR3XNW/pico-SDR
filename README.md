@@ -214,3 +214,11 @@ Another change is to change resistors R10, R11, R12, and R13 to 51k. This change
 Finally, we need to connect pins 4 and 27 of the Atmega328; pins 5 and 28 need to be connected.
 I are still testing and will include a sketch upgrade in the future.
 
+*pico40M_monoband_uSDX_A.ino**
+
+This sketch shows an Atmega328 to pico conversion board with the OLED screen flipped upside down for testing with TriBando uSDX.
+
+## pico20M_monoband_uSDX
+**pico20M_monoband_uSDX_A.ino**
+
+This sketch is a 20M band, USB receiver program. as with the 40M band, the screen is inverted to the upper limit and the VFO is changed to 20M. it is being tested with an Atmega328 to pico conversion board.
