@@ -7,7 +7,7 @@
 #include <Rotary.h>
 #include <U8g2lib.h>
 #include <Wire.h>
-#include "arduinoFFT.h"
+#include <arduinoFFT.h> // v2.0.2
 #include <si5351.h>
 
 //////////////////////////////////////////
@@ -50,7 +50,7 @@ double history[HISTORY_LENGTH][SAMPLES];
 int historyIndex = 0;
 
 U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE);
-arduinoFFT FFT = arduinoFFT();
+ArduinoFFT<double> FFT;  // v2.0.2 Explicit data types using templates
 
 unsigned long FREQ = 7074000;
 unsigned long long FREQ_ULL = 707400000ULL;
@@ -193,10 +193,10 @@ void loop() {
   delay(1);
 
   //FFT
-  FFT.Windowing(vReal, SAMPLES, FFT_WIN_TYP_HAMMING, FFT_FORWARD);
-  FFT.Windowing(vImag, SAMPLES, FFT_WIN_TYP_HAMMING, FFT_FORWARD);
-  FFT.Compute(vReal, vImag, SAMPLES, FFT_REVERSE);
-  FFT.ComplexToMagnitude(vReal, vImag, SAMPLES);
+  FFT.windowing(vReal, SAMPLES, FFTWindow::Hamming, FFTDirection::Forward);  // Use new enum types instead of FFT_WIN_TYP_HAMMING and FFT_FORWARD
+  FFT.windowing(vImag, SAMPLES, FFTWindow::Hamming, FFTDirection::Forward);
+  FFT.compute(vReal, vImag, SAMPLES, FFTDirection::Reverse);  // Change FFT_REVERSE to FFTDirection::Reverse
+  FFT.complexToMagnitude(vReal, vImag, SAMPLES);  // No change
 
   u8g2.clearBuffer();   //Screen buffer clear
   showS_meter();        //Show Smeter
