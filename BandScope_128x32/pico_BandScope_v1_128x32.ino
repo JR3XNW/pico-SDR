@@ -8,7 +8,7 @@
 
 #include <U8g2lib.h>  // This is for controlling the OLED display
 #include <Wire.h>  // This library is needed for I2C communication, which is used by the OLED display
-#include "arduinoFFT.h"  // This library is used to perform Fast Fourier Transform
+#include <arduinoFFT.h> // v2.0.2
 
 //**************************FFT*****************************
 #define I_IN 26  //I-Input pins
@@ -26,7 +26,7 @@ int mod = 0;
 //U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/U8X8_PIN_NONE); 
 U8G2_SSD1306_128X32_UNIVISION_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
 
-arduinoFFT FFT = arduinoFFT();
+ArduinoFFT<double> FFT;  // v2.0.2 Explicit data types using templates
 
 double vReal[SAMPLES];
 double vImag[SAMPLES];
@@ -73,10 +73,10 @@ void loop() {
     }
 
     /*FFT*/
-    FFT.Windowing(vReal, SAMPLES, FFT_WIN_TYP_HAMMING, FFT_FORWARD);
-    FFT.Windowing(vImag, SAMPLES, FFT_WIN_TYP_HAMMING, FFT_FORWARD); 
-    FFT.Compute(vReal, vImag, SAMPLES, FFT_REVERSE);
-    FFT.ComplexToMagnitude(vReal, vImag, SAMPLES);
+    FFT.windowing(vReal, SAMPLES, FFTWindow::Hamming, FFTDirection::Forward);  // Use new enum types instead of FFT_WIN_TYP_HAMMING and FFT_FORWARD
+    FFT.windowing(vImag, SAMPLES, FFTWindow::Hamming, FFTDirection::Forward);
+    FFT.compute(vReal, vImag, SAMPLES, FFTDirection::Reverse);  // Change FFT_REVERSE to FFTDirection::Reverse
+    FFT.complexToMagnitude(vReal, vImag, SAMPLES);  // No change
     
     u8g2.clearBuffer();  // Screen buffer clear
     showScope();  // Spectrum Display
