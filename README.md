@@ -199,7 +199,10 @@ Right now I am testing reception by connecting it to a direct line mixer that I 
 The variable range of the VFO is from 7.0MHz to 7.2MHz, and the variable amount is switched between 1kz, 500Hz, and 100Hz with a push switch on the rotary encoder.
 
 ## pico40M_monoband_uSDX
+
 **pico40M_monoband_uSDX**
+
+**pico40M_monoband_uSDX_v102** Compatible with ArduinoFFT 2.0.2
 
 This folder contains a sketch to turn a uSDX Atmega328 into a Raspberry Pico, the sketch changes, and a wiring diagram.
 The sketch modification is to change the frequency on line 57 to 64800000000ULL since the Si5351's reference frequency is 27MHz. This is an even multiple of the reference frequency (in this case 24 times) in the range of 600 MHz to 900 MHz in order to perform phase control.
