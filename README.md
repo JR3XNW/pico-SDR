@@ -1,5 +1,13 @@
 #   Raspberry Pi pico version SDR radio lab.
 
+## Compatible with ArduinoFFT version 2.0.2
+
+**pico40M_monoband_uSDX>pico40M_monoband_uSDX_v102.ino**
+
+ArduinoFFT 1.6.2 is now compatible with ArduinoFFT 2.0.2.
+
+Other sketches are not yet supported.
+
 ##  Begin programming SDR radios with Raspberry Pi pico.
 
 I have been enjoying various experiments by building uSDR and thought of adding a band scope to uSDX, but it is not very feasible to add that functionality to ATmega328, so I started to program a band scope as an external device using pico.
