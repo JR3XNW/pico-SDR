@@ -6,7 +6,7 @@
 
 The version of ArduinoFFT has been updated from 1.6.2 to 2.0.2, so the sketches are now compatible.
 
-Other sketches are not yet supported.
+ArduinoFFT versions of other sketches were also modified to 2.0.2.
 
 ##  Begin programming SDR radios with Raspberry Pi pico.
 
