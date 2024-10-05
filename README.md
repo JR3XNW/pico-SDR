@@ -234,3 +234,8 @@ This sketch shows an Atmega328 to pico conversion board with the OLED screen fli
 **pico20M_monoband_uSDX_A.ino**
 
 This sketch is a 20M band, USB receiver program. as with the 40M band, the screen is inverted to the upper limit and the VFO is changed to 20M. it is being tested with an Atmega328 to pico conversion board.
+
+## pico40M_monoband_uSDX 2024/10/5 Latest Version
+**pico_SDR_Radio_V2_2.ino**
+
+Please see the sketch for the changes. There is still room for further study, but we have uploaded the current version for now.
